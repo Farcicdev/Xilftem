@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: xilften
+
+  datasource:
+    url: ${URL_DATA}
+    username: ${USUARIO_DATA}
+    password: ${SENHA_DATA}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  flyway:
+    enabled: true
