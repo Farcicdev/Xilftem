@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequestMapping("/streming")
+@RequestMapping("/streaming")
 @RestController
 public class StreamingController {
     @Autowired
