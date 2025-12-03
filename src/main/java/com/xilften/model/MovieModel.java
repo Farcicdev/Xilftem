@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Entity
@@ -23,6 +24,7 @@ public class MovieModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     private String description;
@@ -39,5 +41,22 @@ public class MovieModel {
     @UpdateTimestamp
     @Column(name = "update_at")
     private LocalDateTime updateAt;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_movie_category",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+
+    private List<CategoryModel> categories;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_movie_streaming",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "streaming_id")
+    )
+    private List<StreamingModel> streamings;
 
 }
