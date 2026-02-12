@@ -6,7 +6,7 @@ import java.util.List;
 public record MovieRequest(
         String title,
         String description,
-        double ratting,
+        double rating,
         LocalDate releaseDate,
         List<Long> categories,
         List<Long> streamings

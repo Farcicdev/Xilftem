@@ -5,6 +5,8 @@ import com.xilften.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MovieService {
@@ -13,5 +15,9 @@ public class MovieService {
 
     public MovieModel save(MovieModel movieModel){
         return repository.save(movieModel);
+    }
+
+    public List<MovieModel> list(){
+        return repository.findAll();
     }
 }

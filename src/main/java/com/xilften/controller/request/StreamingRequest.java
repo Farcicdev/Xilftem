@@ -1,4 +1,6 @@
 package com.xilften.controller.request;
-
-public record StreamingRequest(String name) {
+//so necessario o nome dos streaming
+public record StreamingRequest(
+        String name
+) {
 }

@@ -1,6 +1,6 @@
 package com.xilften.controller.request;
-
-public record CategoryRequest(String name) {
-
-
+//so necessario o passar o nome da categoria
+public record CategoryRequest(
+        String name
+) {
 }

@@ -32,15 +32,16 @@ public class MovieModel {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    private double ratting;
+    @Column(name = "rating")
+    private double rating;
 
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @ManyToMany
     @JoinTable(
