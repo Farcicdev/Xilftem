@@ -15,7 +15,6 @@ import java.util.List;
 public class MovieMapper {
 
     public MovieModel toMovie(MovieRequest request){
-
         List<CategoryModel> categories = request.categories()
                 .stream()
                 .map(categoryId -> CategoryModel.builder().id(categoryId).build())

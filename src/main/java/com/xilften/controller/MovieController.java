@@ -2,7 +2,6 @@ package com.xilften.controller;
 
 import com.xilften.controller.request.MovieRequest;
 import com.xilften.controller.response.MovieResponse;
-import com.xilften.mapper.CategoryMapper;
 import com.xilften.mapper.MovieMapper;
 import com.xilften.model.MovieModel;
 import com.xilften.service.MovieService;
@@ -22,7 +21,7 @@ public class MovieController {
     @PostMapping
     public ResponseEntity<MovieResponse> saved (@RequestBody MovieRequest request){
         MovieModel save = service.save(MovieMapper.toMovie(request));
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(MovieMapper.toResponse(save));
     }
 
     @GetMapping
