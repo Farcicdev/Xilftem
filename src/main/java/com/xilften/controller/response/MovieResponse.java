@@ -1,5 +1,6 @@
 package com.xilften.controller.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ public record MovieResponse(
         String title,
         String description,
         double rating,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
         LocalDate releaseDate,
         List<CategoryResponse> categories,
         List<StreamingResponse> streamings

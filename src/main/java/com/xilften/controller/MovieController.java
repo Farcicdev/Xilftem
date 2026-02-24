@@ -32,4 +32,25 @@ public class MovieController {
                 .toList()
         );
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieResponse> findById(@PathVariable Long id){
+        return service.findByIdMovie(id)
+                .map(movie -> ResponseEntity.ok(MovieMapper.toResponse(movie)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MovieResponse> update(@PathVariable Long id, @RequestBody MovieRequest request){
+        return service.updateMovie(id,MovieMapper.toMovie(request))
+                .map(movie -> ResponseEntity.ok(MovieMapper.toResponse(movie)))
+                .orElse(ResponseEntity.notFound().build());
+
+    }
+
+
+    @GetMapping()
+    public ResponseEntity<List<MovieResponse>> findByMovieCategory(@RequestParam Long category){
+        return ResponseEntity.ok(service.findByCategory(category).stream().map(MovieMapper::toResponse).toList());
+    }
 }
