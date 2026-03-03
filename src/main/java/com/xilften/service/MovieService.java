@@ -76,4 +76,8 @@ public class MovieService {
         streamings.forEach(streaming -> streamingService.BuscarById(streaming.getId()).ifPresent(streamingFound::add));
         return streamingFound;
     }
+
+    public void deleteById(Long id){
+        repository.deleteById(id);
+    }
 }
