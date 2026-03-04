@@ -4,9 +4,9 @@ import com.xilften.controller.request.MovieRequest;
 import com.xilften.controller.response.CategoryResponse;
 import com.xilften.controller.response.MovieResponse;
 import com.xilften.controller.response.StreamingResponse;
-import com.xilften.model.CategoryModel;
-import com.xilften.model.MovieModel;
-import com.xilften.model.StreamingModel;
+import com.xilften.model.Category;
+import com.xilften.model.Movie;
+import com.xilften.model.Streaming;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -14,18 +14,18 @@ import java.util.List;
 @UtilityClass
 public class MovieMapper {
 
-    public MovieModel toMovie(MovieRequest request){
-        List<CategoryModel> categories = request.categories()
+    public Movie toMovie(MovieRequest request){
+        List<Category> categories = request.categories()
                 .stream()
-                .map(categoryId -> CategoryModel.builder().id(categoryId).build())
+                .map(categoryId -> Category.builder().id(categoryId).build())
                 .toList();
 
-        List<StreamingModel> streamings = request.streamings()
+        List<Streaming> streamings = request.streamings()
                 .stream()
-                .map(streamingId -> StreamingModel.builder().id(streamingId).build())
+                .map(streamingId -> Streaming.builder().id(streamingId).build())
                 .toList();
 
-        return MovieModel
+        return Movie
                 .builder()
                 .title(request.title())
                 .description(request.description())
@@ -36,7 +36,7 @@ public class MovieMapper {
                 .build();
     }
 
-    public static MovieResponse toResponse(MovieModel model){
+    public static MovieResponse toResponse(Movie model){
 
         List<CategoryResponse> categories = model.getCategories()
                 .stream()

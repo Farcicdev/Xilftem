@@ -1,15 +1,15 @@
 package com.xilften.repository;
 
-import com.xilften.model.CategoryModel;
-import com.xilften.model.MovieModel;
+import com.xilften.model.Category;
+import com.xilften.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface MovieRepository extends JpaRepository<MovieModel, Long> {
+public interface MovieRepository extends JpaRepository<Movie, Long> {
     //BuscarPorCategoria
-    List<MovieModel> findMovieByCategories (List<CategoryModel> categories);
+    List<Movie> findMovieByCategories (List<Category> categories);
 
 }

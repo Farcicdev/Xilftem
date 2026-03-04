@@ -4,7 +4,7 @@ package com.xilften.controller;
 import com.xilften.controller.request.CategoryRequest;
 import com.xilften.controller.response.CategoryResponse;
 import com.xilften.mapper.CategoryMapper;
-import com.xilften.model.CategoryModel;
+import com.xilften.model.Category;
 import com.xilften.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,8 +34,8 @@ public class CategoryController {
 
     @PostMapping("/criar")
     public ResponseEntity<CategoryResponse> criar(@RequestBody CategoryRequest request) {
-        CategoryModel model = CategoryMapper.toCategory(request);
-        CategoryModel criar = categoryService.criar(model);
+        Category model = CategoryMapper.toCategory(request);
+        Category criar = categoryService.criar(model);
         return ResponseEntity.status(HttpStatus.CREATED).body(CategoryMapper.toResponse(criar));
     }
 

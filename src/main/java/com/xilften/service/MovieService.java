@@ -1,8 +1,8 @@
 package com.xilften.service;
 
-import com.xilften.model.CategoryModel;
-import com.xilften.model.MovieModel;
-import com.xilften.model.StreamingModel;
+import com.xilften.model.Category;
+import com.xilften.model.Movie;
+import com.xilften.model.Streaming;
 import com.xilften.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,32 +20,32 @@ public class MovieService {
     private final StreamingService streamingService;
 
 
-    public MovieModel save(MovieModel movieModel) {
-        movieModel.setCategories(this.findByCategory(movieModel.getCategories()));
-        movieModel.setStreamings(this.findByStreamings(movieModel.getStreamings()));
-        return repository.save(movieModel);
+    public Movie save(Movie movie) {
+        movie.setCategories(this.findByCategory(movie.getCategories()));
+        movie.setStreamings(this.findByStreamings(movie.getStreamings()));
+        return repository.save(movie);
     }
 
-    public List<MovieModel> list() {
+    public List<Movie> list() {
         return repository.findAll();
     }
 
-    public Optional<MovieModel> findByIdMovie(Long id){
+    public Optional<Movie> findByIdMovie(Long id){
         return repository.findById(id);
     }
 
-    public Optional<MovieModel> updateMovie(Long id, MovieModel movieModel){
-        Optional<MovieModel> optMovie = repository.findById(id);
+    public Optional<Movie> updateMovie(Long id, Movie movie){
+        Optional<Movie> optMovie = repository.findById(id);
         if(optMovie.isPresent()){
 
-            List<CategoryModel> byCategory = this.findByCategory(movieModel.getCategories());
-            List<StreamingModel> byStreamings = this.findByStreamings(movieModel.getStreamings());
+            List<Category> byCategory = this.findByCategory(movie.getCategories());
+            List<Streaming> byStreamings = this.findByStreamings(movie.getStreamings());
 
-            MovieModel model = optMovie.get();
-            model.setTitle(movieModel.getTitle());
-            model.setDescription(movieModel.getDescription());
-            model.setReleaseDate(movieModel.getReleaseDate());
-            model.setRating(movieModel.getRating());
+            Movie model = optMovie.get();
+            model.setTitle(movie.getTitle());
+            model.setDescription(movie.getDescription());
+            model.setReleaseDate(movie.getReleaseDate());
+            model.setRating(movie.getRating());
 
             model.getStreamings().clear();
             model.getStreamings().addAll(byStreamings);
@@ -53,26 +53,26 @@ public class MovieService {
             model.getCategories().clear();
             model.getCategories().addAll(byCategory);
 
-            repository.save(movieModel);
+            repository.save(movie);
 
-            return Optional.of(movieModel);
+            return Optional.of(movie);
 
         }
             return Optional.empty();
     }
 
-    public List<MovieModel> findByCategory(Long id){
-        return repository.findMovieByCategories(List.of(CategoryModel.builder().id(id).build()));
+    public List<Movie> findByCategory(Long id){
+        return repository.findMovieByCategories(List.of(Category.builder().id(id).build()));
     }
 
-    private List<CategoryModel> findByCategory(List<CategoryModel> categories) {
-        List<CategoryModel> categoriesFound = new ArrayList<>();
+    private List<Category> findByCategory(List<Category> categories) {
+        List<Category> categoriesFound = new ArrayList<>();
         categories.forEach(category -> categoryService.buscarId(category.getId()).ifPresent(categoriesFound::add));
         return categoriesFound;
     }
 
-    private List<StreamingModel> findByStreamings(List<StreamingModel> streamings) {
-        List<StreamingModel> streamingFound = new ArrayList<>();
+    private List<Streaming> findByStreamings(List<Streaming> streamings) {
+        List<Streaming> streamingFound = new ArrayList<>();
         streamings.forEach(streaming -> streamingService.BuscarById(streaming.getId()).ifPresent(streamingFound::add));
         return streamingFound;
     }

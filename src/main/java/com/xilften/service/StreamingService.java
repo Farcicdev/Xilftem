@@ -1,6 +1,6 @@
 package com.xilften.service;
 
-import com.xilften.model.StreamingModel;
+import com.xilften.model.Streaming;
 import com.xilften.repository.StreamingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,17 +14,17 @@ public class StreamingService {
 
     private final StreamingRepository repository;
 
-    public List<StreamingModel> listar() {
+    public List<Streaming> listar() {
         return repository.findAll();
     }
 
     //Criar
-    public StreamingModel criar(StreamingModel model) {
+    public Streaming criar(Streaming model) {
         return repository.save(model);
     }
 
     //ListarPorId
-    public Optional<StreamingModel> BuscarById(Long id) {
+    public Optional<Streaming> BuscarById(Long id) {
         return repository.findById(id);
     }
 

@@ -3,7 +3,7 @@ package com.xilften.controller;
 import com.xilften.controller.request.StreamingRequest;
 import com.xilften.controller.response.StreamingResponse;
 import com.xilften.mapper.StreamingMapper;
-import com.xilften.model.StreamingModel;
+import com.xilften.model.Streaming;
 import com.xilften.service.StreamingService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,8 +38,8 @@ public class StreamingController {
 
     @PostMapping("/criar")
     public ResponseEntity<StreamingResponse> criar(@RequestBody StreamingRequest request) {
-        StreamingModel model = StreamingMapper.toStreaming(request);
-        StreamingModel criar = service.criar(model);
+        Streaming model = StreamingMapper.toStreaming(request);
+        Streaming criar = service.criar(model);
         return ResponseEntity.status(HttpStatus.CREATED).body(StreamingMapper.toResponse(criar));
 
     }

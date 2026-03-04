@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MovieModel {
+public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +50,7 @@ public class MovieModel {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
 
-    private List<CategoryModel> categories;
+    private List<Category> categories;
 
     @ManyToMany
     @JoinTable(
@@ -58,6 +58,6 @@ public class MovieModel {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "streaming_id")
     )
-    private List<StreamingModel> streamings;
+    private List<Streaming> streamings;
 
 }

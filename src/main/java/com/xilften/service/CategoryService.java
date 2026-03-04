@@ -1,6 +1,6 @@
 package com.xilften.service;
 
-import com.xilften.model.CategoryModel;
+import com.xilften.model.Category;
 import com.xilften.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public List<CategoryModel> list() {
+    public List<Category> list() {
         return categoryRepository.findAll();
     }
 
-    public CategoryModel criar(CategoryModel model) {
+    public Category criar(Category model) {
         return categoryRepository.save(model);
     }
 
-    public Optional<CategoryModel> buscarId(Long id) {
+    public Optional<Category> buscarId(Long id) {
         return categoryRepository.findById(id);
     }
 

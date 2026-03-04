@@ -2,20 +2,20 @@ package com.xilften.mapper;
 
 import com.xilften.controller.request.StreamingRequest;
 import com.xilften.controller.response.StreamingResponse;
-import com.xilften.model.StreamingModel;
+import com.xilften.model.Streaming;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class StreamingMapper {
 
-    public static StreamingModel toStreaming(StreamingRequest request) {
-        return StreamingModel
+    public static Streaming toStreaming(StreamingRequest request) {
+        return Streaming
                 .builder()
                 .name(request.name())
                 .build();
     }
 
-    public static StreamingResponse toResponse(StreamingModel model) {
+    public static StreamingResponse toResponse(Streaming model) {
         return StreamingResponse
                 .builder()
                 .name(model.getName())

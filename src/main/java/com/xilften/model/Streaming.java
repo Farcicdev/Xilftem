@@ -8,17 +8,17 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Entity
-@Table(name = "tb_categoria")
+@Table(name = "tb_streaming")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CategoryModel {
+@AllArgsConstructor
+public class Streaming {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100, nullable = false)//VARCHAR(100),NOT NULL
+    @Column(length = 100, nullable = false)
     private String name;
 
 }
